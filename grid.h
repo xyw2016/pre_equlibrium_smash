@@ -20,6 +20,8 @@ struct Cell{
 
     double Temperature;
     double pressure;
+    double muB;
+    double cs2;
     double Tmnnu[16];
     double Jbmu[4];
     //std::vector<double> Tmnnu(16); //T^{\mu\nu}
@@ -60,7 +62,9 @@ class Grid{
     const int NY;
     const int NZ;
     const int NETA;
+    
 
+    const double DT;
     const double DX;
     const double DY;
     const double DZ;

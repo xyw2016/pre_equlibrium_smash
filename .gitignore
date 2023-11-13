@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+eos/EOS
+output*
+build

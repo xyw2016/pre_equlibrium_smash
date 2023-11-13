@@ -37,7 +37,7 @@ int main(int argc, char **argv) {
   smash_events.Readprestage();
   smash_events.Readfinal();
   
-  int eos_type = 14;
+  int eos_type = Parameter::EOS_ID;
   //Grid gird0(smash_events.allevents);
   Grid gird0(eos_type);
   //gird0.GausssmearingTZ(smash_events.allevents);

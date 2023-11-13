@@ -53,6 +53,7 @@ extern int NY;
 extern int NZ;
 extern int NETA;
 
+extern double DT;
 extern double DX;
 extern double DY;
 extern double DZ;
@@ -63,6 +64,14 @@ extern double SIGR;
 extern double SIGZ;
 extern double SIGETA;
 extern double TAU0;
+
+extern double TCUT;
+
+extern int EOS_ID;
+extern int turn_on_rhob;
+extern int turn_on_shear;
+extern int turn_on_bulk;
+extern int turn_on_diff;
 
 
 
