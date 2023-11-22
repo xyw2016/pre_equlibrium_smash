@@ -47,6 +47,7 @@ namespace Parameter {
 
 
 extern std::string PATHIN;
+extern std::string PATHIN2;
 extern std::string PATHOUT;
 extern int NX;
 extern int NY;
@@ -72,6 +73,8 @@ extern int turn_on_rhob;
 extern int turn_on_shear;
 extern int turn_on_bulk;
 extern int turn_on_diff;
+
+extern int read_binary;
 
 
 

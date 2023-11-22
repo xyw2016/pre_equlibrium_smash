@@ -33,11 +33,16 @@ int turn_on_shear = 0;
 int turn_on_bulk  = 0;
 int turn_on_diff  = 0;
 
+int read_binary = 0;
+
 std::string PATHIN="./";
+std::string PATHIN2="./";
 std::string PATHOUT="output";
 
 void Setup(INIReader &reader) {
   PATHIN = reader.Get("Input", "PATHIN", PATHIN);
+  PATHIN2 = reader.Get("Input", "PATHIN2", PATHIN2);
+
   PATHOUT = reader.Get("Input", "PATHOUT", PATHOUT);
   NX   = reader.GetInteger("Input", "NX", NX);
   NY   = reader.GetInteger("Input", "NY", NY);
@@ -61,11 +66,14 @@ void Setup(INIReader &reader) {
   turn_on_shear   = reader.GetInteger("Input", "turn_on_shear", turn_on_shear);
   turn_on_bulk   = reader.GetInteger("Input", "turn_on_bulk", turn_on_bulk);
   turn_on_diff = reader.GetInteger("Input", "turn_on_diff", turn_on_diff);
+  read_binary = reader.GetInteger("Input", "read_binary", turn_on_diff);
 
 
 
   std::cout << "\n ****************************************** \n " ;
   std::cout << "\n The parameter sets\n" 
+            << "  PATHIN     = " << PATHIN << "\n"
+            << "  PATHIN2    = " << PATHIN2 << "\n"
             << "  NX     = " << NX << "\n"
             << "  NY     = " << NY << "\n"
             << "  NETA   = " << NETA << "\n"
@@ -81,7 +89,8 @@ void Setup(INIReader &reader) {
             << "  turn_on_rhob     = " << turn_on_rhob << "\n"
             << "  turn_on_shear     = " << turn_on_shear << "\n"
             << "  turn_on_bulk     = " << turn_on_bulk << "\n"
-            << "  turn_on_diff     = " << turn_on_diff << "\n" <<  std::endl;
+            << "  turn_on_diff     = " << turn_on_diff << "\n" 
+            << "  read_binary     = " << read_binary << "\n" <<  std::endl;
   std::cout << "\n ******************************************" ;
 }
 }

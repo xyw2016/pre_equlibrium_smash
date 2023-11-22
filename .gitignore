@@ -30,6 +30,7 @@
 *.exe
 *.out
 *.app
+*.e
 
 eos/EOS
 output*

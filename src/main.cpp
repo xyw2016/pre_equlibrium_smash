@@ -40,9 +40,8 @@ int main(int argc, char **argv) {
   int eos_type = Parameter::EOS_ID;
   //Grid gird0(smash_events.allevents);
   Grid gird0(eos_type);
-  //gird0.GausssmearingTZ(smash_events.allevents);
+  gird0.GausssmearingTZ(smash_events.allevents);
   gird0.GausssmearingTauEta2(smash_events.NIsotauptc);
-  //std::cout<< smash_events.allevents[0][0][0].pid <<std::endl;
 
 
 
