@@ -32,8 +32,8 @@ int main(int argc, char *argv[]) {
     }
 
     ofstream outbin;
-    //outbin.open(output_filename.c_str(), ios::app| ios::out | ios::binary);
-    outbin.open(output_filename.c_str(), ios::app| ios::out);
+    outbin.open(output_filename.c_str(), ios::app| ios::out | ios::binary);
+    //outbin.open(output_filename.c_str(), ios::app| ios::out);
 
     string temp_string;
     double dummy;
