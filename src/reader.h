@@ -28,12 +28,14 @@ class Events{
 
     ~Events();
 
-    void Readprestage();
-    void Readfinal();
+    // void Readprestage();
+    // void Readfinal();
 
+    void Read_ini();
     
-    TEPaticlelist NIsotauptc;
-    EventsofTEPaticlelist allevents;
+    
+    //Paticlelist_tau ptcl_tau;
+    Paticlelist_event ptcl_event;
 
 
     private:

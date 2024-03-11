@@ -11,7 +11,7 @@
 #endif
 #include <string>
 #include "INIReader.h"
-
+#include <vector>
 
 
 
@@ -37,8 +37,8 @@ struct Particle{
 };
 
 typedef std::vector<Particle> Particlelist;// Fixed-time Particle Spectrum
-typedef std::vector<Particlelist> TEPaticlelist; //Time-Evolving Particle Spectrum
-typedef std::vector<TEPaticlelist> EventsofTEPaticlelist; //all Time-Evolving Particle Spectrum events
+typedef std::vector<Particlelist> Paticlelist_tau; //Particle list at different time
+typedef std::vector<Paticlelist_tau> Paticlelist_event; //Particle list at different event
 
 
 
@@ -47,24 +47,23 @@ namespace Parameter {
 
 
 extern std::string PATHIN;
-extern std::string PATHIN2;
 extern std::string PATHOUT;
 extern int NX;
 extern int NY;
-extern int NZ;
 extern int NETA;
 
-extern double DT;
+
 extern double DX;
 extern double DY;
-extern double DZ;
 extern double DETA;
 
 
 extern double SIGR;
-extern double SIGZ;
 extern double SIGETA;
+
+extern double TAU00;
 extern double TAU0;
+extern int NTAU;
 
 extern double TCUT;
 

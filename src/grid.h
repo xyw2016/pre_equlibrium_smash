@@ -43,41 +43,49 @@ class Grid{
     void Laudumatching(double* Tmn, double& ed, double& u0, double& ux, double& uy, double& uz);
     void rootFinding_newton(double& K0,double& M,double& J0, double& ed_find, double& nb_find);
 
-    void GridClear(Grid3D& grid0,int NZ0);
-    void GausssmearingTZ(EventsofTEPaticlelist& Nptclist);
-    void GausssmearingTauEta(TEPaticlelist& Nptclist);
-    void GausssmearingTauEta2(TEPaticlelist& Nptclist);
-    
+    void GridClear(Grid3D& grid0);
+    void hydro_ini(Paticlelist_event& ptcl_event);
+    // void GausssmearingTZ(EventsofTEPaticlelist& Nptclist);
+    // void GausssmearingTauEta(TEPaticlelist& Nptclist);
+    // void GausssmearingTauEta2(TEPaticlelist& Nptclist);
+    void preequlibirum(Paticlelist_event& ptcl_event);
+    void smearing_kernel(Particlelist& ptclist);
+
+    void perform_laudu(double coutevent);
 
     
     private:
 
     Grid3D Tgrid;
-    Grid3D Taugrid;
-    
+    int CORES;
+
     EOS eos;
     //const EventsofTEPaticlelist NTptclist;
 
     const int NX;
     const int NY;
-    const int NZ;
     const int NETA;
     
 
-    const double DT;
     const double DX;
     const double DY;
-    const double DZ;
     const double DETA;
 
     
 
     const double SIGR;
-    const double SIGZ;
     const double SIGETA;
     const double TAU0;
+    const double TAU00;
+    const int NTAU;
 
-    int nmaxtime;
+
+    double one_o_2sigr2; 
+    double one_o_2sigz2;
+
+    double w1; 
+    double w2; 
+
    
     
 };
