@@ -1,6 +1,5 @@
 
 #include "eos_base.h"
-
 #include <string>
 #include <sstream>
 #include <iomanip>

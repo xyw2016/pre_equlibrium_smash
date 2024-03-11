@@ -12,7 +12,7 @@ ini.cpp
 )
 endif()
 
-add_library(${libname} SHARED ${SOURCES})
+#add_library(${libname} SHARED ${SOURCES})
 set(CompileFlags "")
 if (APPLE)
     set(CompileFlags "${CompileFlags} -DAPPLE")

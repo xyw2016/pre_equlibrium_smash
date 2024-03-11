@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstring>
 //#include <omp.h>
-
+#include <chrono>
 //input file parser
 #include "INIReader.h"
 
@@ -33,6 +33,7 @@ int main(int argc, char **argv) {
 
   Parameter::Setup(reader);
 
+  auto start = std::chrono::high_resolution_clock::now();
 
 
   Events smash_events;
@@ -41,13 +42,16 @@ int main(int argc, char **argv) {
   int eos_type = Parameter::EOS_ID;
   // //Grid gird0(smash_events.allevents);
   Grid grid0(eos_type);
-  grid0.preequlibirum(smash_events.ptcl_event);
+  //grid0.preequlibirum(smash_events.ptcl_event);
   grid0.hydro_ini(smash_events.ptcl_event);
 
   // //gird0.GausssmearingTZ(smash_events.allevents);
   // gird0.GausssmearingTauEta2(smash_events.NIsotauptc);
 
-
+  auto finish = std::chrono::high_resolution_clock::now();
+    
+  std::chrono::duration<double> elapsed = finish - start;
+  std::cout << "Elapsed time: " << elapsed.count() << " s\n";
 
 }
 

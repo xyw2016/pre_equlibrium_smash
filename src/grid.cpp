@@ -62,13 +62,10 @@ Grid::Grid(int use_eos):NX(Parameter::NX), NY(Parameter::NY), NETA(Parameter::NE
     }
 
     CORES = 1;
-
     #ifdef _OPENMP
       CORES = omp_get_max_threads();
     #endif
     std::cout<<" use the number of threads: " <<CORES<<std::endl;
-
-
 
 
 }
@@ -281,10 +278,17 @@ void Grid::smearing_kernel(Particlelist& ptclist){
         
         #pragma omp parallel for collapse(3) reduction(+:norm_facor)
          for(int gridi = 0; gridi < NX; gridi++ ){
+<<<<<<< HEAD
           double xi= (gridi-NX/2)*DX;
           for(int gridj = 0; gridj < NY; gridj++ ){
               double yj = (gridj-NY/2)*DY;
               for(int gridk = 0; gridk < NETA; gridk++ ){
+=======
+          for(int gridj = 0; gridj < NY; gridj++ ){
+              for(int gridk = 0; gridk < NETA; gridk++ ){
+                double xi= (gridi-NX/2)*DX;
+                double yj = (gridj-NY/2)*DY;
+>>>>>>> 014dbf86552c374cf0c63c333140d13fbd334dd0
                 double zk = (gridk-NETA/2)*DETA;         
                 double dxx = ptc_x - xi;
                 double dyy = ptc_y - yj;
