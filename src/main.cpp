@@ -1,13 +1,19 @@
 #include <iostream>
 #include <cstring>
 //#include <omp.h>
-
+#include <chrono>
 //input file parser
 #include "INIReader.h"
 
 #include "parameter.h"
 #include "reader.h"
 #include "grid.h"
+#ifndef _OPENMP
+    #define omp_get_thread_num() 0
+    #define omp_get_num_threads() 1
+#else
+    #include <omp.h>
+#endif
 
 int main(int argc, char **argv) {
   // Try to open input file
@@ -24,26 +30,28 @@ int main(int argc, char **argv) {
     exit(EXIT_FAILURE);
   }
 
-  std::cout<< "Config loaded from 'test.ini': NX="
-              << reader.GetInteger("input", "NX", -1) << ", name="
-              << reader.GetInteger("input", "NY", -1) << ", name="
-              << reader.GetInteger("input", "NZ", -1) << ", name="
-              << reader.GetInteger("input", "NETA", -1) << ", name= \n";
+
   Parameter::Setup(reader);
 
-  std::cout<< Parameter::NX<<std::endl;
+  auto start = std::chrono::high_resolution_clock::now();
+
 
   Events smash_events;
-  smash_events.Readprestage();
-  smash_events.Readfinal();
+  smash_events.Read_ini();
   
   int eos_type = Parameter::EOS_ID;
-  //Grid gird0(smash_events.allevents);
-  Grid gird0(eos_type);
-  gird0.GausssmearingTZ(smash_events.allevents);
-  gird0.GausssmearingTauEta2(smash_events.NIsotauptc);
+  // //Grid gird0(smash_events.allevents);
+  Grid grid0(eos_type);
+  //grid0.preequlibirum(smash_events.ptcl_event);
+  grid0.hydro_ini(smash_events.ptcl_event);
 
+  // //gird0.GausssmearingTZ(smash_events.allevents);
+  // gird0.GausssmearingTauEta2(smash_events.NIsotauptc);
 
+  auto finish = std::chrono::high_resolution_clock::now();
+    
+  std::chrono::duration<double> elapsed = finish - start;
+  std::cout << "Elapsed time: " << elapsed.count() << " s\n";
 
 }
 
