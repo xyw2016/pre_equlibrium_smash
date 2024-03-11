@@ -46,15 +46,15 @@ void Events::Read_ini(){
   }
 
   if(read_binary){
-  //    while(fin.good()){
+     while(fin.good()){
 
-  //     if (fin.eof()) break;
+      if (fin.eof()) break;
       
-  //     float fnptc=0;
+      float fnptc=0;
 
 
-  //     while(fin.read(reinterpret_cast<char*>(&fnptc), sizeof(float))){
-  //       int nptc0 = static_cast<int> (fnptc);
+      while(fin.read(reinterpret_cast<char*>(&fnptc), sizeof(float))){
+        int nptc0 = static_cast<int> (fnptc);
        
         if(nptc0==888888){
           std::cout<<"start read event " << ievent <<std::endl;
@@ -79,28 +79,28 @@ void Events::Read_ini(){
           break;
         }
 
-  //       float array[12];
-  //       for (int i = 0; i < 12; i++) {
-  //           float temp = 0.;
-  //           fin.read(reinterpret_cast<char*>(&temp), sizeof(float));
-  //           array[i] = temp;
-  //       }
+        float array[12];
+        for (int i = 0; i < 12; i++) {
+            float temp = 0.;
+            fin.read(reinterpret_cast<char*>(&temp), sizeof(float));
+            array[i] = temp;
+        }
         
-  //       particle0.t = fnptc;
-  //       particle0.x = array[0];
-  //       particle0.y = array[1];
-  //       particle0.z  = array[2];
-  //       particle0.mass = array[3];
-  //       particle0.e = array[4];
-  //       particle0.px = array[5];
-  //       particle0.py = array[6];
-  //       particle0.pz = array[7];
-  //       particle0.pid = static_cast<int> (array[8]);
-  //       particle0.ncoll = static_cast<int> (array[10]);
-  //       particle0.baryon_number = static_cast<int> (array[11]);
+        particle0.t = fnptc;
+        particle0.x = array[0];
+        particle0.y = array[1];
+        particle0.z  = array[2];
+        particle0.mass = array[3];
+        particle0.e = array[4];
+        particle0.px = array[5];
+        particle0.py = array[6];
+        particle0.pz = array[7];
+        particle0.pid = static_cast<int> (array[8]);
+        particle0.ncoll = static_cast<int> (array[10]);
+        particle0.baryon_number = static_cast<int> (array[11]);
 
-  //       particle0.p0  = sqrt(particle0.px*particle0.px + particle0.py*particle0.py + + particle0.pz*particle0.pz );
-  //       if (fabs(particle0.t) > fabs(particle0.z)){
+        particle0.p0  = sqrt(particle0.px*particle0.px + particle0.py*particle0.py + + particle0.pz*particle0.pz );
+        if (fabs(particle0.t) > fabs(particle0.z)){
         
           particle0.tau = sqrt(particle0.t*particle0.t-particle0.z*particle0.z);
           particle0.etas = 0.5*(log(particle0.t+particle0.z+eps) - log(particle0.t-particle0.z+eps));
@@ -114,12 +114,12 @@ void Events::Read_ini(){
 
         
 
-  //     }
+      }
 
       if (fin.eof()) break;
       
       
-  //    }
+     }
     
   }
   
