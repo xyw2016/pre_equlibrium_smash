@@ -278,17 +278,10 @@ void Grid::smearing_kernel(Particlelist& ptclist){
         
         #pragma omp parallel for collapse(3) reduction(+:norm_facor)
          for(int gridi = 0; gridi < NX; gridi++ ){
-<<<<<<< HEAD
-          double xi= (gridi-NX/2)*DX;
-          for(int gridj = 0; gridj < NY; gridj++ ){
-              double yj = (gridj-NY/2)*DY;
-              for(int gridk = 0; gridk < NETA; gridk++ ){
-=======
           for(int gridj = 0; gridj < NY; gridj++ ){
               for(int gridk = 0; gridk < NETA; gridk++ ){
                 double xi= (gridi-NX/2)*DX;
                 double yj = (gridj-NY/2)*DY;
->>>>>>> 014dbf86552c374cf0c63c333140d13fbd334dd0
                 double zk = (gridk-NETA/2)*DETA;         
                 double dxx = ptc_x - xi;
                 double dyy = ptc_y - yj;
@@ -465,9 +458,7 @@ void Grid::preequlibirum(Paticlelist_event& ptcl_event){
     for(int ievent=0; ievent< ptcl_event.size(); ievent++) 
     { 
       
-      // std::cout<<"t = "<<(itime+1)*dtau<<" fm"<<" "
-      //          <<"EVENT ID: "<<ievent<<" "
-      //          <<"Number of particle: "<<ptcl_event[ievent][itime].size()<< std::endl;
+     
 
       smearing_kernel(ptcl_event[ievent][itime]);
           
@@ -625,12 +616,12 @@ void Grid::hydro_ini(Paticlelist_event& ptcl_event){
         for(int gridk = 0; gridk < NETA; gridk++ ){
 
 
-          float ideal[] = {static_cast<float>(Taugrid[gridi][gridj][gridk].ed),
-                            static_cast<float>(Taugrid[gridi][gridj][gridk].nb),
-                            static_cast<float>(Taugrid[gridi][gridj][gridk].u0),
-                            static_cast<float>(Taugrid[gridi][gridj][gridk].ux),
-                            static_cast<float>(Taugrid[gridi][gridj][gridk].uy),
-                            static_cast<float>(Taugrid[gridi][gridj][gridk].uz/TAU0)};
+          float ideal[] = {static_cast<float>(Tgrid[gridi][gridj][gridk].ed),
+                            static_cast<float>(Tgrid[gridi][gridj][gridk].nb),
+                            static_cast<float>(Tgrid[gridi][gridj][gridk].u0),
+                            static_cast<float>(Tgrid[gridi][gridj][gridk].ux),
+                            static_cast<float>(Tgrid[gridi][gridj][gridk].uy),
+                            static_cast<float>(Tgrid[gridi][gridj][gridk].uz/TAU0)};
           fwrite(ideal, sizeof(float), 6, fout);
 
 
