@@ -3,7 +3,7 @@
 
 #include "parameter.h"
 #include "reader.h"
-#include "eos/eos.h"
+#include "eos.h"
 
 
 
