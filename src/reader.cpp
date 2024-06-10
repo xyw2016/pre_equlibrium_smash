@@ -38,7 +38,7 @@ void Events::Read_ini(){
   ptcl_tau.resize(Parameter::NTAU);
 
   double dtau = (Parameter::TAU0 - Parameter::TAU00)/Parameter::NTAU; 
-  double dtau_eps = dtau/100.0;
+  double dtau_eps = dtau/2.0;
   if(!fin.is_open() ){
     std::cerr<<"#Can't open "<< fnamefinal.str()<<"!!!!!! \n" ;
     exit(0);
@@ -103,6 +103,9 @@ void Events::Read_ini(){
         if (fabs(particle0.t) > fabs(particle0.z)){
         
           particle0.tau = sqrt(particle0.t*particle0.t-particle0.z*particle0.z);
+	  if(particle0.tau > Parameter::TAU0+dtau_eps){
+	      continue;
+	  }
           particle0.etas = 0.5*(log(particle0.t+particle0.z+eps) - log(particle0.t-particle0.z+eps));
         }
         else{
@@ -173,6 +176,9 @@ void Events::Read_ini(){
             particle0.p0  = sqrt(particle0.px*particle0.px + particle0.py*particle0.py + + particle0.pz*particle0.pz );
             if (fabs(particle0.t) > fabs(particle0.z)){
             particle0.tau = sqrt(particle0.t*particle0.t-particle0.z*particle0.z);
+	    if(particle0.tau > Parameter::TAU0+dtau_eps){
+	      continue;
+	    }
             particle0.etas = 0.5*(log(particle0.t+particle0.z+eps) - log(particle0.t-particle0.z+eps));
             
             } // here I only save the particle which in light-cone
